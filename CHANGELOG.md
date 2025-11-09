@@ -4,7 +4,7 @@
 
 ## \[1.1.0] - 2025-11-09
 
-\#### Adicionado
+\## Adicionado por Pedro Santos
 
 \- Função `contar\_compromissos()`: exibe o total de compromissos salvos na agenda.
 
