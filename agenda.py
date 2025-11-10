@@ -1,7 +1,48 @@
 agenda = {}
 
+def validar_data(data):
+    """Nova função: valida se a data está no formato correto"""
+    try:
+        dia, mes, ano = data.split('/')
+        if len(dia) != 2 or len(mes) != 2 or len(ano) != 4:
+            return False
+        dia = int(dia)
+        mes = int(mes)
+        ano = int(ano)
+        
+        # Verifica meses válidos
+        if mes < 1 or mes > 12:
+            return False
+            
+        # Verifica dias válidos
+        if dia < 1 or dia > 31:
+            return False
+            
+        # Verifica meses com 30 dias
+        if mes in [4, 6, 9, 11] and dia > 30:
+            return False
+            
+        # Verifica fevereiro
+        if mes == 2:
+            if dia > 29:
+                return False
+            # Verificação simples de ano bissexto
+            if dia == 29 and (ano % 4 != 0 or (ano % 100 == 0 and ano % 400 != 0)):
+                return False
+                
+        return True
+    except:
+        return False
+
 def adicionar_compromisso():
-    data = input("Digite a data (dd/mm/aaaa): ")
+    while True:
+        data = input("Digite a data (dd/mm/aaaa): ")
+        
+        if validar_data(data):
+            break
+        else:
+            print("Data inválida! Use o formato dd/mm/aaaa com uma data real.")
+    
     compromisso = input("Digite o compromisso: ")
 
     if data in agenda:
